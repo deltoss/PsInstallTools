@@ -28,7 +28,7 @@ function Install-ExeFromUrl {
         [string]$ArchiveFileName = ""
     )
 
-    Import-Module "./Modules/InstallTools/InstallTools.psm1"
+    Import-Module "$PSScriptRoot/Helpers.psm1"
     Import-Module "$PSScriptRoot/Install-FromFolder.psm1"
 
     function Get-FileNameFromUrl {
