@@ -14,7 +14,7 @@ function Install-FromFolder {
     $SourceFolder = Resolve-Path $SourceFolder -ErrorAction SilentlyContinue
     if (-not $SourceFolder -or -not (Test-Path $SourceFolder -PathType Container)) {
         Write-Error "Source folder not found or invalid: $SourceFolder"
-        exit 1
+        return
     }
 
     Write-Host "Source folder resolved to: $SourceFolder"
@@ -80,7 +80,7 @@ function Install-FromFolder {
 
     } catch {
         Write-Error "Installation failed: $($_.Exception.Message)"
-        exit 1
+        return
     }
 }
 

@@ -61,7 +61,7 @@ function Install-ExeFromUrl {
         }
         catch {
             Write-Error $_
-            exit 1
+            return
         }
     } else {
         $fileName = $ArchiveFileName
@@ -81,7 +81,7 @@ function Install-ExeFromUrl {
     }
     catch {
         Write-Error "Failed to download: $_"
-        exit 1
+        return
     }
 
     # Create extraction directory
@@ -96,7 +96,7 @@ function Install-ExeFromUrl {
         Write-Error "Failed to extract: $_"
         Remove-Item $archivePath -Force -ErrorAction SilentlyContinue
         Remove-Item $extractDir -Recurse -Force -ErrorAction SilentlyContinue
-        exit 1
+        return
     }
 
     # Verify we have executable files
@@ -105,7 +105,7 @@ function Install-ExeFromUrl {
         Write-Error "No exe file found matching pattern: $ExePattern"
         Remove-Item $archivePath -Force -ErrorAction SilentlyContinue
         Remove-Item $extractDir -Recurse -Force -ErrorAction SilentlyContinue
-        exit 1
+        return
     }
 
     Write-Host "Found $($exeFiles.Count) executable file(s) matching pattern '$ExePattern'" -ForegroundColor Green
@@ -124,7 +124,7 @@ function Install-ExeFromUrl {
         Write-Error "Installation failed: $_"
         Remove-Item $archivePath -Force -ErrorAction SilentlyContinue
         Remove-Item $extractDir -Recurse -Force -ErrorAction SilentlyContinue
-        exit 1
+        return
     }
 
     # Clean up temporary files

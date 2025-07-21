@@ -56,7 +56,7 @@ function Start-ExeFromUrl {
         }
         catch {
             Write-Error $_
-            exit 1
+            return
         }
     } else {
         $fileName = $ArchiveFileName
@@ -75,7 +75,7 @@ function Start-ExeFromUrl {
     }
     catch {
         Write-Error "Failed to download: $_"
-        exit 1
+        return
     }
 
     New-Item -ItemType Directory -Path $extractDir -Force | Out-Null
@@ -88,7 +88,7 @@ function Start-ExeFromUrl {
         Write-Error $_
         Remove-Item $archivePath -Force -ErrorAction SilentlyContinue
         Remove-Item $extractDir -Recurse -Force -ErrorAction SilentlyContinue
-        exit 1
+        return
     }
 
     $exeFiles = Get-ChildItem -Path $extractDir -Filter $ExePattern -Recurse
@@ -96,7 +96,7 @@ function Start-ExeFromUrl {
         Write-Error "No exe file found matching pattern: $ExePattern"
         Remove-Item $archivePath -Force -ErrorAction SilentlyContinue
         Remove-Item $extractDir -Recurse -Force -ErrorAction SilentlyContinue
-        exit 1
+        return
     }
 
     $exeFile = $exeFiles[0]
