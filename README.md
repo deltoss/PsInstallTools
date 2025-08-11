@@ -21,11 +21,11 @@ Import-Module -Verbose "./PsInstallTools"
 # 4. Adds the installation directory to $PATH environment variable
 Install-ExeBinaryFromUrl (Get-LatestGitHubRelease "zk-org/zk" "*windows-x86_64.tar.gz") "zk"
 
-# Start-ExeBinaryFromUrl should be used for installer executables.
+# Start-ExeFromUrl should be used for installer executables.
 # 1. Downloads from a repository release URL
-# 2. Extracts the archive into a temporary directory
+# 2. If an archive, extracts the archive into a temporary directory
 # 3. Runs the exe file from extracted directory
-Start-ExeBinaryFromUrl (Get-LatestGitHubRelease "zk-org/zk" "*windows-x86_64.tar.gz")
+Start-ExeFromUrl (Get-LatestGitHubRelease "Bill-Stewart/SyncthingWindowsSetup" "syncthing-windows-setup.exe")
 ```
 
 ## One-Off Usage
