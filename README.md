@@ -31,10 +31,14 @@ Start-ExeBinaryFromUrl (Get-LatestGitHubRelease "zk-org/zk" "*windows-x86_64.tar
 ## One-Off Usage
 
 ```powershell
-git clone https://github.com/deltoss/PsInstallTools.git "$env:TEMP/PsInstallTools"
-Import-Module -Verbose "$env:TEMP/PsInstallTools"
+$targetTempPath = "$Env:TEMP/PsInstallTools"
+if (Test-Path $targetTempPath) {
+    Remove-Item -Path $targetTempPath -Recurse -Force
+}
+git clone https://github.com/deltoss/PsInstallTools.git $targetTempPath
+Import-Module -Verbose $targetTempPath
 Install-ExeBinaryFromUrl (Get-LatestGitHubRelease "zk-org/zk" "*windows-x86_64.tar.gz") "zk"
 Remove-Module -Verbose PsInstallTools
-Remove-Item -Path "$env:TEMP/PsInstallTools" -Recurse -Force
+Remove-Item -Path $targetTempPath -Recurse -Force
 ```
 
