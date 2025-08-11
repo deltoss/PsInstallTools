@@ -2,15 +2,15 @@
 # Downloads an archive from a URL, extracts it, installs to %LOCALAPPDATA%/Programs, and adds to PATH
 #
 # Usage:
-#   Install-ExeFromUrl <url> <app_name> [exe_pattern] [working_dir] [archive_filename]
+#   Install-ExeBinaryFromUrl <url> <app_name> [exe_pattern] [working_dir] [archive_filename]
 #
 # Examples:
-#   Install-ExeFromUrl "https://example.com/myapp.zip" "MyApp"
-#   Install-ExeFromUrl (Get-LatestGitHubRelease "zk-org/zk" "*windows-x86_64.tar.gz") "zk"
-#   Install-ExeFromUrl "https://example.com/app.tar.gz" "MyApp" "myapp.exe"
-#   Install-ExeFromUrl "https://example.com/file.7z" "MyApp" "*.exe" "C:\temp"
+#   Install-ExeBinaryFromUrl "https://example.com/myapp.zip" "MyApp"
+#   Install-ExeBinaryFromUrl (Get-LatestGitHubRelease "zk-org/zk" "*windows-x86_64.tar.gz") "zk"
+#   Install-ExeBinaryFromUrl "https://example.com/app.tar.gz" "MyApp" "myapp.exe"
+#   Install-ExeBinaryFromUrl "https://example.com/file.7z" "MyApp" "*.exe" "C:\temp"
 
-function Install-ExeFromUrl {
+function Install-ExeBinaryFromUrl {
     param(
         [Parameter(Position=0, Mandatory=$true)]
         [string]$Url,
@@ -135,4 +135,4 @@ function Install-ExeFromUrl {
     Write-Host "Process completed! '$AppName' has been installed and is ready to use." -ForegroundColor Green
 }
 
-Export-ModuleMember -Function Install-ExeFromUrl
+Export-ModuleMember -Function Install-ExeBinaryFromUrl
