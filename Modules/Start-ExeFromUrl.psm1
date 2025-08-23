@@ -21,7 +21,7 @@ function Start-ExeFromUrl {
         [string]$FileName = "",
 
         [Parameter(Position=2)]
-        [string]$WorkingDir = "$env:TEMP/StartExeFromUrl/"
+        [string]$WorkingDir = "$((Get-Item $env:TEMP).FullName)/StartExeFromUrl/"
     )
 
     Import-Module "$PSScriptRoot/Helpers.psm1"

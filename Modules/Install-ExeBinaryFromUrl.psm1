@@ -22,7 +22,7 @@ function Install-ExeBinaryFromUrl {
         [string]$ExePattern = "*.exe",
 
         [Parameter(Position=3)]
-        [string]$WorkingDir = "$env:TEMP/InstallExeUrl/",
+        [string]$WorkingDir = "$((Get-Item $env:TEMP).FullName)/InstallExeUrl/",
 
         [Parameter(Position=4)]
         [string]$ArchiveFileName = ""

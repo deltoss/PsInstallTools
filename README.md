@@ -31,7 +31,7 @@ Start-ExeFromUrl (Get-LatestGitHubRelease "Bill-Stewart/SyncthingWindowsSetup" "
 ## One-Off Usage
 
 ```powershell
-$targetTempPath = "$Env:TEMP/PsInstallTools"
+$targetTempPath = "$((Get-Item $env:TEMP).FullName)/PsInstallTools"
 if (Test-Path $targetTempPath) {
     Remove-Item -Path $targetTempPath -Recurse -Force
 }
