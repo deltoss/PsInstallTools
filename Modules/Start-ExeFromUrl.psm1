@@ -125,15 +125,12 @@ function Start-ExeFromUrl {
 
     Write-Host "Running $(Split-Path $executablePath -Leaf)..." -ForegroundColor Yellow
     try {
-        $process = Start-Process -FilePath $executablePath -PassThru
-        Write-Host "Process Started..." -ForegroundColor Green
+        Start-Process -FilePath $executablePath -ArgumentList "/S", "/v/qn"
+        Write-Host "Process started silently in the background..." -ForegroundColor Green
     }
     catch {
         Write-Error "Failed to run executable: $_"
     }
-
-    Write-Host "When process is completed, come back here and hit enter..." -ForegroundColor Green
-    Read-Host
 
     Write-Host "Cleaning up files..." -ForegroundColor Yellow
     foreach ($path in $cleanupPaths) {
@@ -142,7 +139,7 @@ function Start-ExeFromUrl {
         }
     }
 
-    Write-Host "Process completed!" -ForegroundColor Green
+    Write-Host "Cleanup completed!" -ForegroundColor Green
 }
 
 Export-ModuleMember -Function Start-ExeFromUrl
